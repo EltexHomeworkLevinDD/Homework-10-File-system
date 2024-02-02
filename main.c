@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <fcntl.h>
-#include <string.h>
 #include <unistd.h>
 
 #define EXITMSG(msg) do { \
@@ -30,7 +29,7 @@ int main(){
         perror("Unhandled error writing file ");
         exit(EXIT_FAILURE);
     }
-    printf("Written to a file: '%.*s'\n", (int)sizeof(text), text);
+    printf("Written to a file: '%.*s'\n", (int)sizeof(text)-1, text); // -1 for exclude '\0'
 
     // Закрытие файла
     close(fd);
